@@ -1,0 +1,28 @@
+{
+	"name": "positivezero/gettext-translator",
+	"description": "Translator for Nette (PHP framework).",
+	"keywords": ["nette", "translator", "gettext"],
+	"homepage": "https://github.com/positivezero/gettext-translator",
+	"license": ["BSD-3-Clause"],
+	"authors": [
+		{
+			"name": "Patrik Votoček",
+			"homepage": "http://patrik.votocek.cz"
+		},
+		{
+			"name": "Tomáš Votruba",
+			"homepage": "http://www.schmutzka.eu"
+		},
+        {
+            "name": "Vojtěch Kijenský",
+            "homepage": "http://www.positivezero.co.uk"
+        }
+	],
+	"autoload": {
+		"classmap": ["GettextTranslator/"]
+	},
+	"require": {
+		"php": ">=5.3.0",
+		"nette/nette": ">=2.1-dev"
+	}
+}
