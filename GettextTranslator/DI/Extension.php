@@ -17,7 +17,7 @@ class Extension extends Nette\DI\CompilerExtension
 		'lang' => 'en',
 		'files' => array(),
 		'layout' => 'horizontal',
-		'height' => 450
+		'height' => 465
 	);
 
 

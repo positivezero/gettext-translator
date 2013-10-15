@@ -103,13 +103,12 @@
 	font-weight: bold;
 }
 
-#TranslationPanel textarea {
+div.TranslationPanel-stringVariant textarea {
 	width: 95%;
 	height: 70%;
 	background-color: #fff;
-	border: 1px solid #bbb;
-	margin: 0.5em 0;
-	border: 1px solid #888;
+	border: 1px solid #bbb !important;
+	margin: 0.5em 0 !important;
 }
 
 #TranslationPanel-tools {
@@ -148,6 +147,13 @@
 	float: left;
 	display: block;
 	padding: 4px 0;
+	text-align: left;
+}
+
+#TranslationPanel-status textarea {
+	background-color: #fff;
+	width: <?php if ($this->layout == 'vertical') echo '340px'; else echo '532px'; ?>;
+	height: 40px;
 }
 
 #TranslationPanel-notification {
@@ -413,7 +419,13 @@ var translationPanel = {
 		this.fillIn(this.strings[this.currentFile][string]);
 		this.currentString = string;
 		document.getElementById('TranslationPanel-stringVariant_0').focus();
-		this.setStatus(string.length <= 50 ? this.escape(string) : this.escape(string).substr(0, 50) + '&hellip;');
+		var textarea = document.createElement('textarea');
+		    textarea.setAttribute('readonly', 'readonly');
+		    textarea.onfocus = function() {
+			      this.select();
+			    };
+		    textarea.textContent = this.escape(string);
+		    this.setStatus(textarea);
 	},
 
 	fillIn: function (stringData) {
@@ -490,10 +502,17 @@ var translationPanel = {
 	},
 
 	setStatus: function (text) {
-		if (text)
-			document.getElementById('TranslationPanel-status').innerHTML = text;
+		var status = document.getElementById('TranslationPanel-status');
+		if (typeof text == 'object'){
+			  while (status.hasChildNodes()) {
+					status.removeChild(status.lastChild);
+				  }
+			  status.appendChild(text);
+			}
+		else if (text)
+			  status.innerHTML = text;
 		else
-			document.getElementById('TranslationPanel-status').innerHTML = '';
+			status.innerHTML = '';
 	},
 
 	escape: function (string) {

@@ -152,7 +152,12 @@ class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 			$form = 1;
 		}
 
-		if (!empty($message) && isset($this->dictionary[$message])) {
+		if (!empty($message)
+				&& isset($this->dictionary[$message])
+				&& isset($this->dictionary[$message]['file'])
+				&& isset($this->metadata[$this->dictionary[$message]['file']])
+				&& isset($this->metadata[$this->dictionary[$message]['file']]['Plural-Forms'])
+		) {
 			$tmp = preg_replace('/([a-z]+)/', '$$1', "n=$form;" . $this->metadata[$this->dictionary[$message]['file']]['Plural-Forms']);
 			eval($tmp);
 
