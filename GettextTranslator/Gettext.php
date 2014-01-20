@@ -9,7 +9,7 @@ use Nette\Utils\Strings;
 
 class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 {
-	/** @inject @var FileManager */
+	/** @var FileManager */
 	public $fileManager;
 
 	/* @var string */
@@ -43,11 +43,12 @@ class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 	private $httpResponse;
 
 
-	public function __construct(Nette\Http\Session $session, Nette\Caching\IStorage $cacheStorage, Nette\Http\Response $httpResponse)
+	public function __construct(Nette\Http\Session $session, Nette\Caching\IStorage $cacheStorage, Nette\Http\Response $httpResponse, FileManager $fileManager)
 	{
 		$this->sessionStorage = $sessionStorage = $session->getSection(self::$namespace);
 		$this->cache = new Nette\Caching\Cache(new Nette\Caching\Storages\DevNullStorage(), self::$namespace);
 		$this->httpResponse = $httpResponse;
+		$this->fileManager = $fileManager;
 		/*
 		if (!isset($sessionStorage->newStrings) || !is_array($sessionStorage->newStrings)) {
 			$sessionStorage->newStrings = array();
