@@ -148,6 +148,14 @@ class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 
 		} elseif (is_numeric($form)) {
 			$form = (int) $form;
+			
+			if($form < 2) {
+				$message_plural = 0;
+			} elseif($form < 5) {
+				$message_plural = 1;
+			} else {
+				$message_plural = 2;
+			}
 
 		} elseif (!is_int($form) || $form === NULL) {
 			$form = 1;
