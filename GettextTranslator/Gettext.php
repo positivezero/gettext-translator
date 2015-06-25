@@ -183,7 +183,7 @@ class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 				$this->sessionStorage->newStrings[$this->lang][$message] = empty($message_plural) ? array($message) : array($message, $message_plural);
 			}
 
-			if ($form > 1 && !empty($message_plural)) {
+			if ($form > 1 && !empty($message_plural) && is_string($message_plural)) {
 				$message = $message_plural;
 			}
 		}
