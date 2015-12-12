@@ -1,5 +1,5 @@
 {
-	"name": "positivezero/gettext-translator",
+	"name": "kosikcz/gettext-translator",
 	"description": "Translator for Nette (PHP framework).",
 	"keywords": ["nette", "translator", "gettext"],
 	"homepage": "https://github.com/positivezero/gettext-translator",
