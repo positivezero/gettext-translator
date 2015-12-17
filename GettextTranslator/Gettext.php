@@ -10,7 +10,7 @@ use Nette\Utils\Strings;
 class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 {
 	const SKIP_CHAR = '!';
-	
+
 	/** @var FileManager */
 	public $fileManager;
 
@@ -141,7 +141,7 @@ class Gettext extends Nette\Object implements Nette\Localization\ITranslator
 	public function translate($message, $form = 1)
 	{
 		if(Strings::startsWith($message, self::SKIP_CHAR)) {
-			return $message;
+			return substr($message, 1);
 		}
 
 		$this->loadDictonary();
