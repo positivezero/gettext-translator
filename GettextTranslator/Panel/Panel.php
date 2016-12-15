@@ -115,7 +115,7 @@ class Panel extends Nette\Object implements Nette\Diagnostics\IBarPanel
 	 */
 	private function processRequest()
 	{
-		if ($this->httpRequest->isPost() && $this->httpRequest->isAjax() && $this->httpRequest->getHeader($this->xhrHeader)) {
+		if ($this->httpRequest->isMethod('POST') && $this->httpRequest->isAjax() && $this->httpRequest->getHeader($this->xhrHeader)) {
 			$data = json_decode(file_get_contents('php://input'));
 
 			if ($data) {
